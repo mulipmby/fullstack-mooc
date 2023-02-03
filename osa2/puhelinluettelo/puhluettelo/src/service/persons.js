@@ -17,9 +17,10 @@ const del = (id) => {
   return axios.delete(`${baseUrl}/${id}`)
 }
 
-export default { 
+const logger = {
   getAll: getAll, 
   create: create, 
   update: update ,
   del: del
 }
+export default logger

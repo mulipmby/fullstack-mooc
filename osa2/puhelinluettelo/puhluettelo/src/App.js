@@ -59,6 +59,7 @@ const App = () => {
   const [errorMessage, setErrorMessage] = useState(null)
   const [ alertColor, setAlertColor ] = useState('alertGreen')
 
+  
   useEffect(() => {
     personService
       .getAll()
@@ -67,6 +68,7 @@ const App = () => {
       })
   }, [])
 
+  console.log(persons)
   const addName = (event) => {
     event.preventDefault()
     const nameObject = {
