@@ -68,7 +68,7 @@ const App = () => {
       })
   }, [])
 
-  console.log(persons)
+
   const addName = (event) => {
     event.preventDefault()
     const nameObject = {
@@ -92,8 +92,15 @@ const App = () => {
       .create(nameObject)
       .then(response => {
         setPersons(persons.concat(response.data)) 
-        handleTime(`Added ${response.data.name} ${response.data.number}`)}  
-    )}
+        handleTime(`Added ${response.data.name} ${response.data.number}`)
+      })
+      .catch(reason => {
+        setAlertColor('alertRed')
+        handleTime(reason.response.data)
+        console.log(reason.response.data)
+      })
+    }
+    
     setNewName('')
     setNewNumber('')
   }

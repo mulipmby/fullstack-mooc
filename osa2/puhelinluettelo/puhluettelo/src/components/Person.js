@@ -1,7 +1,6 @@
 import personService from '../service/persons'
 
 const Person = ( { persons, newFilter, setPersons} ) => {
-console.log(persons)
   const p =
   persons.filter(person => person.name.toLowerCase().includes(newFilter.toLowerCase())
  )
