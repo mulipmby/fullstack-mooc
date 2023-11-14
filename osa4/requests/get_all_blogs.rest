@@ -6,9 +6,10 @@ POST http://localhost:3003/api/blogs
 Content-Type: application/json
 
 {
-"title": "TestiBlog", 
-"author": "1234567890",
+"title": "hei testi1", 
+"author": "wt2fw",
 "url": "http://localhost:3003/api/blogs", 
-"likes": "22"
+"likes": 234,
+"userId": "65538b235ccca3e4424600a6"
 }
 
