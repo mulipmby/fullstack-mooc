@@ -7,7 +7,7 @@ Content-Type: application/json
 
 {
 "title": "TestiBlog", 
-"author": "1234",
+"author": "1234567890",
 "url": "http://localhost:3003/api/blogs", 
 "likes": "22"
 }
