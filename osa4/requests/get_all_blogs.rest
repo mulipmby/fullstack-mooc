@@ -4,6 +4,7 @@ GET http://localhost:3003/api/blogs
 
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RhdGFhbiIsImlkIjoiNjU1MzhiMjM1Y2NjYTNlNDQyNDYwMGE2IiwiaWF0IjoxNjk5OTg0NDIxLCJleHAiOjE2OTk5ODgwMjF9.kVTFwYkG-A3sFUYVjpiGrF7YDoHjip02HF7PZNcKt6g
 
 {
 "title": "hei testi1", 
