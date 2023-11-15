@@ -36,13 +36,14 @@ describe('when there is initially some blogs saved', () => {
     });
   })
 
-  // Testi blogin lisäämiseen
+  // Testi blogin lisäämiseen, , ongelama kun ei ole tokenia
   test('Adding a blog', async () => {
     const newBlog = {
       title: "TestBlog",
       author: "1234",
       url: "http://localhost:3003/api/blogs",
-      likes: 526
+      likes: 526,
+      user: "65538b235ccca3e4424600a6"
     }
 
     await api
@@ -61,12 +62,13 @@ describe('when there is initially some blogs saved', () => {
     )
   })
 
-  //jos ei ole annettu likejä, liken oletuarvo on 0
+  //jos ei ole annettu likejä, liken oletuarvo on 0, ongelama kun ei ole tokenia
   test('Blog without likes, likes = 0', async () => {
     const newBlog = {
-      title: "TestBlog",
+      title: "TestBlg",
       author: "1234",
-      url: "http://localhost:3003/api/blogs",
+      url: "http://localhost:3003/api/b",
+      userId: "65538b235ccca3e4424600a6"
     }
 
     await api
@@ -102,7 +104,7 @@ describe('when there is initially some blogs saved', () => {
     expect(response.body).toHaveLength(helper.initialBlogs.length)
   })
 
-  //poistaminen
+  //poistaminen,  ei toimi koska ei ole oikeutta poistaa ellei token käytössä-
   test('a blog can be deleted', async () => {
     const blogsAtStart = await helper.blogsInDb()
     const blogToDelete = blogsAtStart[0]
