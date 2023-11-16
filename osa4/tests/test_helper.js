@@ -8,7 +8,7 @@ const initialBlogs = [
         author: 'Edsger W. Dijkstra1111',
         url: 'http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html',
         likes: 22,
-        user: '65561cd18ae71ae6f02e11ef'
+        user: '6556208252fad298b462935d'
     }
 ]
 
