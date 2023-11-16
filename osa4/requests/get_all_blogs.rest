@@ -4,7 +4,7 @@ GET http://localhost:3003/api/blogs
 
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RhdGFhbiIsImlkIjoiNjU1MzhiMjM1Y2NjYTNlNDQyNDYwMGE2IiwiaWF0IjoxNzAwMDYyOTMyLCJleHAiOjE3MDAwNjY1MzJ9.pWE9xeVcBPdcBMh16wMD86yH6YC0gx9L1TmWYw3qszU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInRcCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RhdGFhbiIsImlkIjoiNjU1MzhiMjM1Y2NjYTNlNDQyNDYwMGE2IiwiaWF0IjoxNzAwMTM3NjMwLCJleHAiOjE3MDAxNDEyMzB9.TVNzd5KGHw1AwMN7KwoiXLKNiD01RuAVEl9G_cMfHsA
 
 {
 "title": "hei testi1", 
@@ -16,6 +16,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc
 
 ###
 
-DELETE http://localhost:3003/api/blogs/6554e6f4c4ae6940b19dfd4f
+DELETE http://localhost:3003/api/blogs/6554de1e184e89e8eb80fcd3
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RhdGFhbiIsImlkIjoiNjU1MzhiMjM1Y2NjYTNlNDQyNDYwMGE2IiwiaWF0IjoxNzAwMDYyOTMyLCJleHAiOjE3MDAwNjY1MzJ9.pWE9xeVcBPdcBMh16wMD86yH6YC0gx9L1TmWYw3qszU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RhdGFhbiIsImlkIjoiNjU1MzhiMjM1Y2NjYTNlNDQyNDYwMGE2IiwiaWF0IjoxNzAwMDYzNTU4LCJleHAiOjE3MDAwNjcxNTh9.rlg9YfrCE2Dl2rHJ9eaKPy3TtzTT1mHW7FS_VQmto48
