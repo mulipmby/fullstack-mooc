@@ -1,7 +1,8 @@
 import { useState } from "react"
+import blogService from '../services/blogs'
 
 
-const Blog = ({ blog, handleLike }) => {
+const Blog = ({ blog, handleLike, setBlogs, blogs }) => {
   const blogStyle = {
     paddingTop: 10,
     paddingLeft: 2,
@@ -23,6 +24,17 @@ const Blog = ({ blog, handleLike }) => {
     handleLike(newBlog)
   }
 
+  const handleRemove = (id) => {
+    return () => {
+      if (window.confirm(`Remove blog ${blog.title} by ${blog.author}`)) {
+        blogService.remove(id)
+          .then(() => {
+            setBlogs(blogs.filter(blog => blog.id !== id))
+          })
+      }
+    }
+  }
+
   const [blogVisible, setBlogVisible] = useState(false)
   const hideWhenVisible = { display: blogVisible ? 'none' : '' }
   const showWhenVisible = { display: blogVisible ? '' : 'none' }
@@ -39,6 +51,7 @@ const Blog = ({ blog, handleLike }) => {
         <p>{blog.url}</p>
         <p>Likes {blog.likes} <button onClick={handleLikes}>like</button></p>
         <p>{blog.author}</p>
+        <button onClick={handleRemove(blog.id)}>remove</button>
       </div>
     </div>
   )
