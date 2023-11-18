@@ -2,7 +2,7 @@ import { useState } from "react"
 import blogService from '../services/blogs'
 
 
-const Blog = ({ blog, handleLike, setBlogs, blogs }) => {
+const Blog = ({ blog, handleLike, user, setBlogs, blogs }) => {
   const blogStyle = {
     paddingTop: 10,
     paddingLeft: 2,
@@ -25,12 +25,14 @@ const Blog = ({ blog, handleLike, setBlogs, blogs }) => {
   }
 
   const handleRemove = (id) => {
-    return () => {
-      if (window.confirm(`Remove blog ${blog.title} by ${blog.author}`)) {
-        blogService.remove(id)
-          .then(() => {
-            setBlogs(blogs.filter(blog => blog.id !== id))
-          })
+    if (user.username === blog.user.username) {
+      return () => {
+        if (window.confirm(`Remove blog ${blog.title} by ${blog.author}`)) {
+          blogService.remove(id)
+            .then(() => {
+              setBlogs(blogs.filter(blog => blog.id !== id))
+            })
+        }
       }
     }
   }
