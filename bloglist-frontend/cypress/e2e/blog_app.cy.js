@@ -10,9 +10,7 @@ describe('Blog app', function() {
         cy.visit('http://localhost:5173')
     })
     it('Login form is shown',  function() {
-        cy.visit('http://localhost:5173')
         cy.contains('Log in to application')
-
     })
 
     describe('Login',function() {
@@ -30,6 +28,24 @@ describe('Blog app', function() {
             cy.get('#login-button').click()
 
             cy.contains('wrong username or password')
+        })
+    })
+
+    describe('When logged in', function() {
+        beforeEach(function() {
+            cy.contains('login').click()
+            cy.get('#username').type('Testataan')
+            cy.get('#password').type('salainen')
+            cy.get('#login-button').click()
+        })
+
+        it('A blog can be created', function() {
+            cy.contains('create new blog').click()
+            cy.get('#title').type('testiblogi')
+            cy.get('#author').type('testiblogaaja')
+            cy.get('#url').type('testiblogi.fi')
+            cy.get('#create-button').click()
+            cy.contains('testiblogi')
         })
     })
 

@@ -42,6 +42,7 @@ const BlogForm = (props) => {
                         <input
                             type="text"
                             role="textbox"
+                            id='title'
                             value={newTitle}
                             onChange={({ target }) => setNewTitle(target.value)}
                         />
@@ -51,6 +52,7 @@ const BlogForm = (props) => {
                         <input
                             type="text"
                             role='textbox'
+                            id='author'
                             value={newAuthor}
                             onChange={({ target }) => setNewAuthor(target.value)}
                         />
@@ -60,11 +62,12 @@ const BlogForm = (props) => {
                         <input
                             type="text"
                             role="textbox"
+                            id='url'
                             value={newUrl}
                             onChange={({ target }) => setNewUrl(target.value)}
                         />
                     </div>
-                    <button type="submit">create</button>
+                    <button type="submit" id='create-button'>create</button>
                 </form>
             </div>}
         </div>
