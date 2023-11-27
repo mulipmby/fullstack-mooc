@@ -59,6 +59,25 @@ describe('Blog app', function() {
             cy.contains('like').click()
             cy.contains('Likes 1')
         })
+        it('A blog can be deleted', function() {
+            cy.contains('create new blog').click()
+            cy.get('#title').type('testiblogi')
+            cy.get('#author').type('testiblogaaja')
+            cy.get('#url').type('testiblogi.fi')
+            cy.get('#create-button').click()
+            cy.contains('testiblogi')
+            cy.contains('view').click()
+            cy.contains('remove').click()
+            cy.wait(100)
+            cy.on('window:confirm', (str) => {
+                expect(str).to.equal('Remove blog testiblogi by testiblogaaja')
+                cy.contains('OK').click()
+            })
+            cy.wait(100)
+            cy.reload()
+            cy.contains('testiblogi').should('not.exist')
+        })
+
     })
 
 })
