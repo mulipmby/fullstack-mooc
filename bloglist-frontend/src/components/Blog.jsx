@@ -44,7 +44,7 @@ const Blog = ({ blog, handleLike, user, setBlogs, blogs }) => {
     }
 
     return (
-        <div style={blogStyle}>
+        <div style={blogStyle} className='blog'>
             {blog.title}
             { blogVisible && <div>
                 <p>{blog.url}</p>
