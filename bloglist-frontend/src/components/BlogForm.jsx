@@ -41,6 +41,7 @@ const BlogForm = (props) => {
                         title
                         <input
                             type="text"
+                            role="textbox"
                             value={newTitle}
                             onChange={({ target }) => setNewTitle(target.value)}
                         />
@@ -49,6 +50,7 @@ const BlogForm = (props) => {
                         author
                         <input
                             type="text"
+                            role='textbox'
                             value={newAuthor}
                             onChange={({ target }) => setNewAuthor(target.value)}
                         />
@@ -57,6 +59,7 @@ const BlogForm = (props) => {
                         url
                         <input
                             type="text"
+                            role="textbox"
                             value={newUrl}
                             onChange={({ target }) => setNewUrl(target.value)}
                         />
@@ -71,7 +74,13 @@ const BlogForm = (props) => {
 
 BlogForm.propTypes = {
     setBlogs: PropTypes.func.isRequired,
-    blogs: PropTypes.array.isRequired,
+    blogs: PropTypes.arrayOf(
+        PropTypes.shape({
+            title: PropTypes.string.isRequired,
+            author: PropTypes.string.isRequired,
+            url: PropTypes.string.isRequired,
+        })
+    ).isRequired,
     handleTime: PropTypes.func.isRequired
 }
 
