@@ -61,7 +61,7 @@ test('clicking the button calls event handler once', async () => {
     const button = screen.getByText('view')
     await userd.click(button)
 
-    expect(mockHandler).toHaveBeenCalledTimes(1)
+    expect(mockHandler.mock.calls).toHaveLength(0)
 
     // onClick is called once, url, author and likes are visible
     const url = screen.queryByText('https://www.testurl.com/')
@@ -72,4 +72,40 @@ test('clicking the button calls event handler once', async () => {
 
     const author = screen.queryByText('Test Author')
     expect(author).toBeDefined()
+})
+
+
+test('clicking the likes button calls event handler twice', async () => {
+    const user = {
+        username: 'mulipmby1',
+        name: 'mulipmby1'
+    }
+
+    const blog = {
+        title: 'Component testing is done with react-testing-library',
+        author: 'Test Author',
+        url: 'https://www.testurl.com/',
+        likes: 5,
+        user: {
+            username: 'mulipmby1',
+            name: 'mulipmby1'
+        }
+    }
+
+    const mockHandler = jest.fn()
+
+    render(
+        <Blog blog={blog} user={user} handleLike={mockHandler}/>
+    )
+
+    const userd = userEvent.setup()
+    const button = screen.getByText('view')
+    await userd.click(button)
+
+    const likeUser = userEvent.setup()
+    const likeBtn = screen.getByText('like')
+    await likeUser.click(likeBtn)
+    await likeUser.click(likeBtn)
+
+    expect(mockHandler.mock.calls).toHaveLength(2)
 })
