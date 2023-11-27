@@ -1,5 +1,6 @@
 import { useState } from "react"
 import blogService from '../services/blogs'
+import PropTypes from 'prop-types'
 
 const BlogForm = (props) => {
     const [blogVisible, setBlogVisible] = useState(false)
@@ -7,8 +8,9 @@ const BlogForm = (props) => {
     const [newAuthor, setNewAuthor] = useState('')
     const [newUrl, setNewUrl] = useState('')
 
-    const hideWhenVisible = { display: blogVisible ? 'none' : '' }
-    const showWhenVisible = { display: blogVisible ? '' : 'none' }
+    const toggleVisibility = () => {
+        setBlogVisible(!blogVisible)
+    }
 
     const addBlog = (event) => {
         event.preventDefault()
@@ -29,10 +31,10 @@ const BlogForm = (props) => {
 
     return (
         <div>
-            <div style={hideWhenVisible}>
-                <button onClick={() => setBlogVisible(true)}>create new blog </button>
+            <div>
+                <button onClick={toggleVisibility}>{blogVisible ? 'cancel' : 'create new blog'}</button>
             </div>
-            <div style={showWhenVisible}>
+            {blogVisible && <div>
                 <form onSubmit={addBlog}>
                     <h2>create new</h2>
                     <div>
@@ -61,11 +63,16 @@ const BlogForm = (props) => {
                     </div>
                     <button type="submit">create</button>
                 </form>
-                <button onClick={() => setBlogVisible(false)}>cancel</button>
-            </div>
+            </div>}
         </div>
 
     )
+}
+
+BlogForm.propTypes = {
+    setBlogs: PropTypes.func.isRequired,
+    blogs: PropTypes.array.isRequired,
+    handleTime: PropTypes.func.isRequired
 }
 
 export default BlogForm
