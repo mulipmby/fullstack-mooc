@@ -38,23 +38,21 @@ const Blog = ({ blog, handleLike, user, setBlogs, blogs }) => {
     }
 
     const [blogVisible, setBlogVisible] = useState(false)
-    const hideWhenVisible = { display: blogVisible ? 'none' : '' }
-    const showWhenVisible = { display: blogVisible ? '' : 'none' }
+
+    const toggleVisibility = () => {
+        setBlogVisible(!blogVisible)
+    }
 
     return (
         <div style={blogStyle}>
-            <div style={hideWhenVisible}>
-                {blog.title}
-                <button onClick={() => setBlogVisible(true)}>view</button>
-            </div>
-            <div style={showWhenVisible}>
-                <button onClick={() => setBlogVisible(false)}>hide</button>
-                <p>{blog.title}</p>
+            {blog.title}
+            { blogVisible && <div>
                 <p>{blog.url}</p>
                 <p>Likes {blog.likes} <button onClick={handleLikes}>like</button></p>
                 <p>{blog.author}</p>
                 <button onClick={handleRemove(blog.id)}>remove</button>
-            </div>
+            </div>}
+            <button onClick={toggleVisibility}>{blogVisible ? 'hide' : 'view'}</button>
         </div>
     )
 }

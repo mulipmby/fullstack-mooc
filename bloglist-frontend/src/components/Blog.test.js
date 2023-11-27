@@ -28,8 +28,48 @@ test('renders content', () => {
 
     // url and likea are not visible
     const url = screen.queryByText('https://www.testurl.com/')
-    expect(url).not.toBeVisible()
+    expect(url).not.toBeInTheDocument()
 
     const likes = screen.queryByText(`Likes ${blog.likes}`)
-    expect(likes).not.toBeVisible()
+    expect(likes).not.toBeInTheDocument()
+})
+
+test('clicking the button calls event handler once', async () => {
+    const user = {
+        username: 'mulipmby1',
+        name: 'mulipmby1'
+    }
+
+    const blog = {
+        title: 'Component testing is done with react-testing-library',
+        author: 'Test Author',
+        url: 'https://www.testurl.com/',
+        likes: 5,
+        user: {
+            username: 'mulipmby1',
+            name: 'mulipmby1'
+        }
+    }
+
+    const mockHandler = jest.fn()
+
+    render(
+        <Blog blog={blog} user={user} />
+    )
+
+    const userd = userEvent.setup()
+    const button = screen.getByText('view')
+    await userd.click(button)
+
+    expect(mockHandler).toHaveBeenCalledTimes(1)
+
+    // onClick is called once, url, author and likes are visible
+    const url = screen.queryByText('https://www.testurl.com/')
+    expect(url).toBeDefined()
+
+    const likes = screen.queryByText(`Likes ${blog.likes}`)
+    expect(likes).toBeDefined()
+
+    const author = screen.queryByText('Test Author')
+    expect(author).toBeDefined()
 })
