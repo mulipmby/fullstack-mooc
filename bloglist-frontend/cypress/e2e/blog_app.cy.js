@@ -47,6 +47,18 @@ describe('Blog app', function() {
             cy.get('#create-button').click()
             cy.contains('testiblogi')
         })
+
+        it('A blog can be liked', function() {
+            cy.contains('create new blog').click()
+            cy.get('#title').type('testiblogi')
+            cy.get('#author').type('testiblogaaja')
+            cy.get('#url').type('testiblogi.fi')
+            cy.get('#create-button').click()
+            cy.contains('testiblogi')
+            cy.contains('view').click()
+            cy.contains('like').click()
+            cy.contains('Likes 1')
+        })
     })
 
 })
