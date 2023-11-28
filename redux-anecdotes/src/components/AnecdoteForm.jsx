@@ -1,7 +1,6 @@
 import { createAnecdote } from '../reducers/anecdoteReducer'
 import store from '../main'
 
-
 const AnecdoteForm = () => {
 
   const addAnecdote = (event) => {
