@@ -1,3 +1,5 @@
+import { createSlice } from '@reduxjs/toolkit'
+
 const anecdotesAtStart = [
   'If it hurts, do it more often',
   'Adding manpower to a late software project makes it later!',
@@ -6,15 +8,7 @@ const anecdotesAtStart = [
   'Premature optimization is the root of all evil.',
   'Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.'
 ]
-export const createAnecdote = (content) => { return {
-  type: 'NEW_ANECDOTE',
-    payload: {
-      content,
-      id: getId(),
-      votes: 0
-    }
-}
-}
+
 const getId = () => (100000 * Math.random()).toFixed(0)
 
 const asObject = (anecdote) => {
@@ -25,23 +19,31 @@ const asObject = (anecdote) => {
   }
 }
 
-const initialState = anecdotesAtStart.map(asObject)
+const anecdoteSlice = createSlice({
+  name: 'anecdotes',
+  initialState: anecdotesAtStart.map(asObject),
+  reducers: {
+    createAnecdote: (state, action) => {
+      const anecdote = action.payload
+      state.push({
+        content: anecdote,
+        id: getId(),
+        votes: 0
+      })
+    },
+    appendAnecdote: (state, action) => {
+      const anecdote = action.payload
+      state.push(anecdote)
+    },
 
-const reducer = (state = initialState, action) => {
-  console.log(action.type)
-  switch(action.type) {
-    case 'VOTE':{
-      const id = action.data.id
-      const anecdoteToVote = state.find(a => a.id === id)
+    vote: (state, action) => {
+      const id = action.payload
+      const anecdoteToVote = state.find((a) => a.id === id)
       const votedAnecdote = {...anecdoteToVote, votes: anecdoteToVote.votes + 1 }
       return state.map(a => a.id !== id ? a : votedAnecdote)
-    }
-    case 'NEW_ANECDOTE': { 
-      return [...state, action.payload]
-    }
-      default:
-      return state
+    },
   }
-}
+})
 
-export default reducer
+export const {createAnecdote, appendAnecdote, vote} = anecdoteSlice.actions
+export default anecdoteSlice.reducer

@@ -1,5 +1,5 @@
 import { createAnecdote } from '../reducers/anecdoteReducer'
-import store from '../main'
+import store from '../store'
 
 const AnecdoteForm = () => {
 
