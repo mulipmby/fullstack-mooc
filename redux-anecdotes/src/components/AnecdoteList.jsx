@@ -3,8 +3,13 @@ import store from '../main'
 import { useEffect } from 'react'
 
 const AnecDoteList = () => {
-    const anecdotes = useSelector(state => state)
-  
+    const anecdotes = useSelector(state => {
+        if ( state.filter === '' ) {
+          return state.anecdotes
+        }
+        return state.anecdotes.filter(anecdote => anecdote.content.toLowerCase().includes(state.filter.toLowerCase()))
+      })
+
     useEffect(() => {
       anecdotes.sort((a, b) => b.votes - a.votes)
     }, [anecdotes])
@@ -15,6 +20,7 @@ const AnecDoteList = () => {
         data: { id }
       })
     }
+    
     return (
         <div>
         {anecdotes.map(anecdote =>
