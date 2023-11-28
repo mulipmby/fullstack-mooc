@@ -1,15 +1,15 @@
 import { useSelector } from 'react-redux'
 import store from './main'
 import { useEffect } from 'react'
+import { createAnecdote } from './reducers/anecdoteReducer'
 
 const App = () => {
   const anecdotes = useSelector(state => state)
-  const generateId = () => Number((Math.random() * 1000000).toFixed(0))
   
   useEffect(() => {
     anecdotes.sort((a, b) => b.votes - a.votes)
   }, [anecdotes])
-  
+
   const vote = (id) => {
     store.dispatch({
       type: 'VOTE',
@@ -20,14 +20,7 @@ const App = () => {
     event.preventDefault()
     const content = event.target.anecdote.value
     event.target.anecdote.value = ''
-    store.dispatch({
-      type: 'NEW_ANECDOTE',
-      data: {
-        content,
-        id: generateId(),
-        votes: 0
-      }
-    })
+    store.dispatch(createAnecdote(content))
   }
 
   return (
